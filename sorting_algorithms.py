@@ -6,6 +6,7 @@
 1. 快速排序 (quick_sort)
 2. 归并排序 (merge_sort)
 3. 插入排序 (insertion_sort)
+4. 冒泡排序 (bubble_sort)
 """
 
 def quick_sort(arr):
@@ -104,6 +105,32 @@ def insertion_sort(arr):
     
     return arr
 
+def bubble_sort(arr):
+    """
+    冒泡排序算法实现
+    
+    Args:
+        arr (list): 待排序的列表
+    
+    Returns:
+        list: 排序后的列表
+    """
+    # 创建输入数组的副本
+    arr = arr.copy()
+    n = len(arr)
+    
+    # 外层循环控制排序轮数
+    for i in range(n):
+        # 内层循环进行相邻元素比较和交换
+        # 每轮结束后，最大的元素会"冒泡"到末尾
+        # 由于每轮都会将一个元素放到正确位置，所以内层循环可以减少范围
+        for j in range(0, n - i - 1):
+            # 如果前一个元素大于后一个元素，则交换它们
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    
+    return arr
+
 def test_sorting_algorithm(sort_func, test_array):
     """
     测试排序算法的辅助函数
@@ -137,5 +164,11 @@ if __name__ == "__main__":
     # 测试插入排序
     print("\n测试插入排序:")
     original, sorted_result = test_sorting_algorithm(insertion_sort, test_array)
+    print("原始数组:", original)
+    print("排序后数组:", sorted_result)
+    
+    # 测试冒泡排序
+    print("\n测试冒泡排序:")
+    original, sorted_result = test_sorting_algorithm(bubble_sort, test_array)
     print("原始数组:", original)
     print("排序后数组:", sorted_result)
